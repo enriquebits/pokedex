@@ -1,0 +1,14 @@
+<div class="columns is-multiline">
+    <div class="column is-one-quarter" *ngFor="let f of favorites">
+        <div class="box has-text-centered">
+            <div>
+                <p class="title">{{ f.name }}</p>
+                <span class="icon has-text-danger is-clickable" (click)="removeFromFavorites(f)">
+                    <i class="fa fa-heart"></i>
+                </span>
+            </div>
+            <img [ngClass]="{'hidden': !f.imageLoaded}" width="180" height="180" (load)="f.imageLoaded = true"
+                [attr.src]="f.sprite">
+        </div>
+    </div>
+</div>
