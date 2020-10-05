@@ -1,0 +1,22 @@
+<div class="columns is-multiline">
+    <div class="column is-one-quarter" *ngFor="let p of pokemon">
+        <div class="box has-text-centered">
+            <div>
+                <p class="title">{{ p.name }}</p>
+                <span class="icon has-text-danger is-clickable" (click)="addToFavorites(p)">
+                    <i *ngIf="p.isFavorite" class="fas fa-heart"></i>
+                    <i *ngIf="!p.isFavorite" class="far fa-heart"></i>
+                </span>
+            </div>
+            <img [ngClass]="{'hidden': !p.imageLoaded}" width="180" height="180" (load)="p.imageLoaded = true"
+                [attr.src]="p.sprite">
+        </div>
+    </div>
+</div>
+
+<div class="has-text-centered">
+    <button class="button is-primary" (click)="loadMore()" [disabled]="isLoading">
+        <span *ngIf="isLoading">Cargando...</span>
+        <span *ngIf="!isLoading">Cargar más</span>
+    </button>
+</div>
