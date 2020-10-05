@@ -1,0 +1,54 @@
+<section class="hero is-primary is-medium">
+  <!-- Hero head: will stick at the top -->
+  <div class="hero-head">
+    <header class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item">
+            <p class="title">Pokedex</p>
+          </a>
+          <span class="navbar-burger burger" data-target="navbarMenuHeroC">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenuHeroC" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item">
+              <div class="field">
+                <div class="control has-icons-right">
+                  <input class="input is-medium" type="text" placeholder="pikachu">
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="subtitle">
+        Encuentra a tu pokemon
+      </h1>
+    </div>
+  </div>
+
+  <!-- Hero footer: will stick at the bottom -->
+  <div class="hero-foot">
+    <nav class="tabs is-boxed is-fullwidth">
+      <div class="container">
+        <ul>
+          <li routerLinkActive="is-active"><a routerLink="pokemon-list">Pokemon</a></li>
+          <li routerLinkActive="is-active"><a routerLink="favorites">Favoritos</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</section>
+<section class="section">
+  <router-outlet></router-outlet>
+</section>
