@@ -16,7 +16,3 @@ Framework CSS `https://bulma.io/`
 
 Iconos `https://fontawesome.com/`
 
-### angular-cli-ghpages 
-
-Herramienta para el deploy del proyecto en github pages
-
