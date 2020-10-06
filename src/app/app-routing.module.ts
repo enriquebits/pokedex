@@ -6,7 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, children: [
-    {path: '', redirectTo: '/pokemon-list', pathMatch: 'full'},
+    {path: '', redirectTo: 'pokemon-list', pathMatch: 'full'},
     {path: 'pokemon-list', component: PokemonListComponent},
     {path: 'favorites', component: FavoritesComponent}
   ]},
