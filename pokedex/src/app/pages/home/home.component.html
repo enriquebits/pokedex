@@ -18,7 +18,11 @@
             <a class="navbar-item">
               <div class="field">
                 <div class="control has-icons-right">
-                  <input class="input is-medium" type="text" placeholder="pikachu">
+                  <input class="input is-medium" type="search" [value]="text"
+                    (keyup)="$event.keyCode == 13 ? doSearch() : textChanged($event)" placeholder="pikachu">
+                  <span class="icon is-medium is-right">
+                    <i class="fas fa-search"></i>
+                  </span>
                 </div>
               </div>
             </a>
@@ -30,10 +34,22 @@
 
   <!-- Hero content: will be in the middle -->
   <div class="hero-body">
-    <div class="container">
+    <div *ngIf="!pokemon.id" class="container">
       <h1 class="subtitle">
         Encuentra a tu pokemon
       </h1>
+    </div>
+    <div *ngIf="pokemon && pokemon.id" class="container">
+      <div>
+        <p class="title">{{ pokemon.name }}
+          <span class="icon has-text-danger ml-5 is-clickable" (click)="addToFavorites(pokemon)">
+            <i *ngIf="pokemon.isFavorite" class="fas fa-heart"></i>
+            <i *ngIf="!pokemon.isFavorite" class="far fa-heart"></i>
+          </span>
+        </p>
+      </div>
+      <img [ngClass]="{'hidden': !pokemon.imageLoaded}" width="180" height="180" (load)="pokemon.imageLoaded = true"
+        [attr.src]="pokemon.sprite">
     </div>
   </div>
 
