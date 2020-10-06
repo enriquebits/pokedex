@@ -8,7 +8,7 @@ import { PokedexService } from '../../services/pokedex.service';
   styleUrls: ['./pokemon-list.component.scss']
 })
 export class PokemonListComponent implements OnInit {
-  pokemon: Pokemon[] = [];
+  pokemon: Array<any> = [];
   favoritesIDS: Array<any> = [];
   favorites: Array<any> = [];
   isLoading: boolean = false;
@@ -28,7 +28,6 @@ export class PokemonListComponent implements OnInit {
 
     this.pokedexService.getPokemon(this.pokemon.length, this.pokemon.length*this.offset)
       .then(pokemon => {
-        console.log(pokemon);
         pokemon = pokemon.map(p => {
           p.imageLoaded = false;
           p.isFavorite = this.favoritesIDS.includes(p.id);
@@ -43,10 +42,23 @@ export class PokemonListComponent implements OnInit {
       });
   }
 
-  addToFavorites(pokemon: Pokemon) {
-    pokemon.isFavorite = true;
-    this.favorites.push(pokemon);
+  addToFavorites(pokemon: any) {
+    this.favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    this.favoritesIDS = this.favorites.map(f => f.id);
+    
+    if (!pokemon.isFavorite) {
+      pokemon.isFavorite = true;
+      this.favorites.push(pokemon);
+    }
+    else {
+      pokemon.isFavorite = false;
+      const index = this.favoritesIDS.indexOf(pokemon.id, 0);
+      if (index > -1) {
+        this.favorites.splice(index, 1);
+      }
+    }
     localStorage.setItem("favorites", JSON.stringify(this.favorites));
+    this.favoritesIDS = this.favorites.map(f => f.id);
   }
   
 }

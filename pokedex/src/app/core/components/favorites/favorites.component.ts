@@ -15,4 +15,12 @@ export class FavoritesComponent implements OnInit {
     this.favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
   }
 
+  removeFromFavorites(favorite: any) {
+    const index = this.favorites.indexOf(favorite, 0);
+    if (index > -1) {
+      this.favorites.splice(index, 1);
+      localStorage.setItem("favorites", JSON.stringify(this.favorites));
+    }
+  }
+
 }
